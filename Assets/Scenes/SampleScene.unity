@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedHero: 10
-  _distanceMove: 5
+  _distanceMove: 2
   _hero: {fileID: 1427476284}
 --- !u!114 &877155972
 MonoBehaviour:
@@ -604,7 +604,6 @@ GameObject:
   - component: {fileID: 1427476280}
   - component: {fileID: 1427476279}
   - component: {fileID: 1427476277}
-  - component: {fileID: 1427476283}
   - component: {fileID: 1427476284}
   m_Layer: 0
   m_Name: Capsule
@@ -620,13 +619,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427476276}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 738fbf1e52569f94dbc9cce5b4c2caf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterController: {fileID: 1427476283}
   _speedHero: 10
+  _distanceMove: 5
 --- !u!136 &1427476279
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -707,24 +706,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90.481, z: 0}
---- !u!143 &1427476283
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427476276}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5000001
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1427476284
 MonoBehaviour:
   m_ObjectHideFlags: 0

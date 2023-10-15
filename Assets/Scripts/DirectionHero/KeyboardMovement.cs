@@ -3,41 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyboardMovement : MonoBehaviour
-{
-    [SerializeField] private CharacterController _characterController;
+{   
     [SerializeField] private float _speedHero = 10f;
+    [SerializeField] private float _distanceMove = 5f;
 
-    private float _directionX;
-    private float _directionZ;
-    private float _defaultSpeedHero;
-    private float _increasedSpeed = 2;
-    private Vector3 _move;
-
-    private void Start()
-    {
-        _defaultSpeedHero = _speedHero;
-    }
+    private Vector3 _direction;
+    private bool _isUseKeyboard = false;
 
     private void Update()
     {
-        MoveHero();
+        ChooseDirection();
+
+        if (_isUseKeyboard == true)
+        {
+            MoveHero();
+        }
+    }  
+
+    private void ChooseDirection()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            _direction = transform.position + Vector3.left * _distanceMove;
+            _isUseKeyboard = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            _direction = transform.position + Vector3.right * _distanceMove;
+            _isUseKeyboard = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            _direction = transform.position + Vector3.back * _distanceMove;
+            _isUseKeyboard = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            _direction = transform.position + Vector3.forward * _distanceMove;
+            _isUseKeyboard = true;
+        }       
     }
 
     private void MoveHero()
     {
-        _directionX = Input.GetAxis("Horizontal");
-        _directionZ = Input.GetAxis("Vertical");
-        _move = transform.right * _directionX + transform.forward * _directionZ;
+        transform.position = Vector3.MoveTowards(transform.position, _direction, _speedHero * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (transform.position == _direction)
         {
-            _speedHero = _defaultSpeedHero * _increasedSpeed;
+            _isUseKeyboard = false;
         }
-        else
-        {
-            _speedHero = _defaultSpeedHero;
-        }
-
-        _characterController.Move(_move * _speedHero * Time.deltaTime);
     }
 }
